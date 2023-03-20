@@ -6,7 +6,7 @@ ini_set('display_error',1);
 //Headers
 
 header('Access-Control-Allow-Origin: *');
-header('Content-Typr: application/json');
+header('Content-Type: application/json');
 header('Access-Control-Allow-Method: POST');
 
 //Including reuired files

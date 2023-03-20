@@ -2,6 +2,10 @@
 
 error_reporting(E_ALL);
 ini_set('display_error',1);
+
+/**
+ * @OA\Info(title="PDP PDO REST API", version="1.0")
+ */
 class Post{
 
     //Post Properties
@@ -17,8 +21,16 @@ class Post{
         $this->connection = $db;
     }
 
-    //method to read all the saved posts from database
 
+    /**
+     * @OA\Get(
+     *   path="/php/php-pdo/api/post/posts.php",
+     *   summary="method to read all the saved posts from database",
+     *   tags={"Posts"},
+     *   @OA\Response(response=200,description="found"),
+     *   @OA\Response(response=404,description="not found"),
+     * )
+     */
     public function readPosts()
     {
        //query for reading posts from table.
@@ -31,8 +43,25 @@ class Post{
        return $post;
     }
 
-    //Method for reading sing post
-
+    
+    /**
+     * @OA\Get(
+     *   path="/php/php-pdo/api/post/single.php",
+     *   summary="method for reading single post",
+     *   tags={"Posts"},
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="query",
+     *      required=true,
+     *      description="id",
+     *      @OA\Schema(
+     *          type="string"
+     *      )
+     *   ),
+     *   @OA\Response(response=200,description="found"),
+     *   @OA\Response(response=404,description="not found"),
+     * )
+     */
     public function readSinglePosts($id)
     {
         $this->id = $id;
@@ -51,6 +80,20 @@ class Post{
        return $post;
     }
 
+    /**
+     * @OA\Post(
+     *   path="/php/php-pdo/api/post/insert.php",
+     *   summary="method for create post",
+     *   tags={"Posts"},
+     *   @OA\RequestBody(
+     *      @OA\MediaType(
+     *          
+     *      )
+     *   )
+     *   @OA\Response(response=200,description="found"),
+     *   @OA\Response(response=404,description="not found"),
+     * )
+     */
     public function createPosts($params)
     {
        try{
