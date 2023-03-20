@@ -19,6 +19,10 @@ $db = $database->connect();
 
 $post = new Post($db);
 $data = $post->readPosts();
+if(is_bool($data)){
+    echo json_encode(['message'=>'no posts found']);
+    exit;
+}
 // if ther is post in database
 
 if($data->rowCount()){
