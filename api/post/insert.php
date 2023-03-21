@@ -28,8 +28,8 @@ if(count(($_POST))){
         'category_id' => $_POST['category_id'],
         'description' => $_POST['description'],
     ];
-
-    if($post->createPosts($params)){
+    $newPost = $post->createPosts($params);
+    if($newPost){
         echo json_encode(['message'=>'Post Added Successfully']);
     }else{
         echo json_encode(['message'=>'Post Adding Error']);

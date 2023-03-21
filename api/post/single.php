@@ -22,7 +22,16 @@ $post = new Post($db);
 if(isset($_GET['id'])){
     $data = $post->readSinglePosts($_GET['id']);
     // if ther is post in database
-    if($data->rowCount()){
+    if(is_numeric($data)){
+        if($data==2){
+            echo json_encode(['message'=>'You are not Authorised']);
+        }else if($data==3){
+            echo json_encode(['message'=>'You are not Authorised']);
+        }
+        
+        exit;
+    }
+    if(!is_numeric($data)){
         $posts = [];
         // re-arrange the post data
     
@@ -35,8 +44,13 @@ if(isset($_GET['id'])){
                 'created_at' => $row->created_at, 
            ];
         }
-        echo json_encode($posts);
-    }else{
+        if(!empty($posts)){
+            echo json_encode($posts);
+        }else{
+            echo json_encode(['message'=>'no post data found']);
+        }
+    }
+    else{
         echo json_encode(['message'=>'no post data found']);
     }
 }

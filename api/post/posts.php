@@ -19,8 +19,13 @@ $db = $database->connect();
 
 $post = new Post($db);
 $data = $post->readPosts();
-if(is_bool($data)){
-    echo json_encode(['message'=>'no posts found']);
+if(is_numeric($data)){
+    if($data==2){
+        echo json_encode(['message'=>'You are not Authorised']);
+    }else if($data==3){
+        echo json_encode(['message'=>'You are not Authorised']);
+    }
+    
     exit;
 }
 // if ther is post in database

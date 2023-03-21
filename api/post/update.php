@@ -27,8 +27,8 @@ if(isset($data)){
         'category_id' => $data->category_id,
         'description' => $data->description,
     ];
-
-    if($post->updatePost($params)){
+$postUpdate = $post->updatePost($params);
+    if($postUpdate){
         echo json_encode(['message'=>'Post Update Successfully']);
     }else{
         echo json_encode(['message'=>'Post update Error']);

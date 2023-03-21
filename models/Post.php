@@ -100,11 +100,11 @@ class Post
                     $post->execute();
                     return $post;
                 } else {
-                    return false;
+                    return 2;
                 }
 
             } else {
-                return false;
+                return 3;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -155,11 +155,11 @@ class Post
 
                     return $post;
                 } else {
-                    return false;
+                    return 2;
                 }
 
             } else {
-                return false;
+                return 3;
             }
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -207,7 +207,6 @@ class Post
                 $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
                 if (isset($decoded->userName) && $decoded->userName == "Ajish") {
 
-                    try {
                         // Assigning Values
                         $this->title = $params['title'];
                         $this->category_id = $params['category_id'];
@@ -227,9 +226,7 @@ class Post
                             return true;
                         }
                         return false;
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                    }
+             
                 } else {
                     return false;
                 }
@@ -288,7 +285,7 @@ class Post
                 $token = str_ireplace('Bearer ', '', $header["Authorization"]);
                 $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
                 if (isset($decoded->userName) && $decoded->userName == "Ajish") {
-                    try {
+                    
                         // Assigning Values
                         $this->id = $params['id'];
                         $this->title = $params['title'];
@@ -314,9 +311,6 @@ class Post
                         }
                         return false;
 
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                    }
                 } else {
                     return false;
                 }
@@ -360,7 +354,7 @@ class Post
                 $token = str_ireplace('Bearer ', '', $header["Authorization"]);
                 $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
                 if (isset($decoded->userName) && $decoded->userName == "Ajish") {
-                    try {
+                   
                         // Assigning Values
                         $this->id = $id;
                         //Query to update post in database
@@ -374,9 +368,6 @@ class Post
                         }
                         return false;
 
-                    } catch (PDOException $e) {
-                        echo $e->getMessage();
-                    }
                 } else {
                     return false;
                 }
